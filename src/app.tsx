@@ -1,9 +1,15 @@
-import {logo} from "./assets/Logo.svg"
+import logo from "./assets/Logo.svg"
 import { NoteCard } from "./components/node-card"
 import {NewNoteCard} from "./components/new-note-card"
+import { useState } from "react"
 
 
 export function App() {
+
+  const [notes, setNotes] = useState([
+    {id:1, date: new Date(), content: "hello world"},
+    {id:2, date: new Date(), content: "nota 2"}
+  ])
 
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6">
@@ -24,10 +30,9 @@ export function App() {
 
           <NewNoteCard />
 
-         <NoteCard note={{
-            date: new Date(),
-            content: "Hello"
-         }}/>
+         {notes.map(note => {
+          return <NoteCard key = {note.id} note={note}/>
+         })}
      
 
         
